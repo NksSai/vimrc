@@ -291,13 +291,13 @@ nnoremap <silent> <F3> :Grep<CR>
 "" 怎样才能把它弄得跟 eclipse 一样智能呢？一路回车
 "" 就可以跳出括号
 
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {<cr>}<ESC>O
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
+"":inoremap ( ()<ESC>i
+"":inoremap ) <c-r>=ClosePair(')')<CR>
+"":inoremap { {<cr>}<ESC>O
+"":inoremap } <c-r>=ClosePair('}')<CR>
+"":inoremap [ []<ESC>i
+"":inoremap ] <c-r>=ClosePair(']')<CR>
+"":inoremap " ""<ESC>i
 ":inoremap < <><ESC>i
 ":inoremap > <c-r>=ClosePair('>')<CR>
 
@@ -399,12 +399,18 @@ set pastetoggle=<leader>p
 
 "vim wiki viki
 " Viki
-""autocmd! BufRead,BufNewFile *.viki set filetype=viki
+autocmd! BufRead,BufNewFile *.viki set filetype=viki
+let g:vimwiki_list = [{ 'path':'~/viki/',
+			\'template_path':'~/viki/template/',
+			\'template_default':'default_template',
+			\'template_ext':'.html',
+			\'path_html':'~/viki/html/'}]
 
 
 ""autocmd filetype python set complete+=k~/.vim/pydiction/pydiction
 ""autocmd FileType python set omnifunc=pythoncomplete#Complete
 ""autocmd filetype python inoremap <f2> <c-n>
+autocmd filetype go compiler go
 
 
 " configure tags - add additional tags here or comment out not-used ones
@@ -414,8 +420,6 @@ set pastetoggle=<leader>p
 	let OmniCpp_ShowPrototypeInAbbr = 1
 	let OmniCpp_DefaultNamespaces = [ "std" ]
 	set nocp
-    filetype plugin on
-    filetype indent on
 	set tags+=/home/freedom/codes/tag/tags
 	"au BufWritePost *.c,*.cpp,*.cc,*.h !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
 	" OmniCppComplete
